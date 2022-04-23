@@ -1,24 +1,27 @@
-# workout_tracker
+# Active Tracker
 
-## Project setup
-```
+## Установка необходимых зависимостей
+
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+
+### Запуск локального сервера для разработки
+
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Развёрнутое на netlify приложение
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+https://my-active-tracker.netlify.app/
+
+
+### Использованные технологии:
+
+
+  -Vue
+  
+  
+  -Tailwind CSS
+  
+  
+  -Supabase
