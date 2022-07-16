@@ -10,11 +10,6 @@ npm install
 npm run serve
 
 
-### Развёрнутое на netlify приложение
-
-https://my-active-tracker.netlify.app/
-
-
 ### Использованные технологии:
 
 
