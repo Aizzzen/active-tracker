@@ -1,11 +1,9 @@
 <template>
   <div class="max-w-screen-sm mx-auto px-4 py-10">
-    <!-- Error Handling -->
     <div v-if="errorMsg" class="mb-10 p-4 rounded-md bg-light-grey shadow-lg">
       <p class="text-red-500">{{ errorMsg }}</p>
     </div>
 
-    <!-- Register -->
     <form
       @submit.prevent="register"
       class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg"
@@ -72,14 +70,12 @@ import { useRouter } from "vue-router";
 export default {
   name: "register",
   setup() {
-    // Create data / vars
     const router = useRouter();
     const email = ref(null);
     const password = ref(null);
     const confirmPassword = ref(null);
     const errorMsg = ref(null);
 
-    // Register function
     const register = async () => {
       if (password.value === confirmPassword.value) {
         try {

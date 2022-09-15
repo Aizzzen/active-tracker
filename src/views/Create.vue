@@ -1,6 +1,5 @@
 <template>
   <div class="max-w-screen-md mx-auto px-4 py-10">
-    <!-- Status Message -->
     <div
       v-if="statusMsg || errorMsg"
       class="mb-10 p-4 bg-light-grey rounded-md shadow-lg"
@@ -11,13 +10,10 @@
       <p class="text-red-500">{{ errorMsg }}</p>
     </div>
 
-    <!-- Create -->
     <div class="p-8 flex items-start bg-light-grey rounded-md shadow-lg">
-      <!-- Form -->
       <form @submit.prevent="createWorkout" class="flex flex-col gap-y-5 w-full">
         <h1 class="text-2xl text-at-light-green">Record Workout</h1>
 
-        <!-- Workout Name -->
         <div class="flex flex-col">
           <label for="workout-name" class="mb-1 text-sm text-at-light-green"
             >Workout Name</label
@@ -31,7 +27,6 @@
           />
         </div>
 
-        <!-- Workout Type -->
         <div class="flex flex-col">
           <label for="workout-type" class="mb-1 text-sm text-at-light-green"
             >Workout Type</label
@@ -49,7 +44,6 @@
           </select>
         </div>
 
-        <!-- Strength Training Inputs -->
         <div v-if="workoutType === 'strength'" class="flex flex-col gap-y-4">
           <div
             class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
@@ -115,7 +109,6 @@
           </button>
         </div>
 
-        <!-- Cardio Inputs -->
         <div v-if="workoutType === 'cardio'" class="flex flex-col gap-y-4">
           <div
             class="flex flex-col gap-x-6 gap-y-2 relative md:flex-row"
@@ -207,14 +200,12 @@ import { supabase } from "../supabase/init";
 export default {
   name: "create",
   setup() {
-    // Create data
     const workoutName = ref("");
     const workoutType = ref("select-workout");
     const exercises = ref([]);
     const statusMsg = ref(null);
     const errorMsg = ref(null);
 
-    // Add exercise
     const addExercise = () => {
       if (workoutType.value === "strength") {
         exercises.value.push({
@@ -235,7 +226,6 @@ export default {
       });
     };
 
-    // Delete exercise
     const deleteExercise = (id) => {
       if (exercises.value.length > 1) {
         exercises.value = exercises.value.filter((exercise) => exercise.id !== id);
@@ -247,13 +237,11 @@ export default {
       }, 5000);
     };
 
-    // Listens for chaging of workout type input
     const workoutChange = () => {
       exercises.value = [];
       addExercise();
     };
 
-    // Create workout
     const createWorkout = async () => {
       try {
         const { error } = await supabase.from("workouts").insert([

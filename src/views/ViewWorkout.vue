@@ -1,6 +1,5 @@
 <template>
   <div class="max-w-screen-sm mx-auto px-4 py-10">
-    <!-- App Msg -->
     <div
       v-if="statusMsg || errorMsg"
       class="mb-10 p-4 rounded-md shadow-md bg-light-grey"
@@ -14,9 +13,8 @@
     </div>
 
     <div v-if="dataLoaded">
-      <!-- General Workout Info -->
       <div
-        class="flex flex-col items-center p-8 rounded-md shadow-md 
+        class="flex flex-col items-center p-8 rounded-md shadow-md
       bg-light-grey relative"
       >
         <div v-if="user" class="flex absolute left-2 top-2 gap-x-2">
@@ -70,12 +68,10 @@
         </div>
       </div>
 
-      <!-- Exercises -->
       <div
         class="mt-10 p-8 rounded-md flex flex-col item-center
       bg-light-grey shadow-md"
       >
-        <!-- Strength Training -->
         <div v-if="data.workoutType === 'strength'" class="flex flex-col gap-y-4 w-full">
           <div
             class="flex flex-col gap-x-6 gap-y-2 relative sm:flex-row"
@@ -238,7 +234,6 @@
         </div>
       </div>
 
-      <!-- Update -->
       <button
         v-if="edit"
         @click="update"
@@ -262,7 +257,6 @@ import { uid } from "uid";
 export default {
   name: "view-workout",
   setup() {
-    // Create data / vars
     const data = ref(null);
     const dataLoaded = ref(null);
     const errorMsg = ref(null);
@@ -271,10 +265,8 @@ export default {
     const router = useRouter();
     const user = computed(() => store.state.user);
 
-    // Get current Id of route
     const currentId = route.params.workoutId;
 
-    // Get workout data
     const getData = async () => {
       try {
         const { data: workouts, error } = await supabase
@@ -295,7 +287,6 @@ export default {
 
     getData();
 
-    // Delete workout
     const deleteWorkout = async () => {
       try {
         const { error } = await supabase
@@ -312,14 +303,12 @@ export default {
       }
     };
 
-    // Edit mode
     const edit = ref(null);
 
     const editMode = () => {
       edit.value = !edit.value;
     };
 
-    // Add exercise
     const addExercise = () => {
       if (data.value.workoutType === "strength") {
         data.value.exercises.push({
@@ -340,7 +329,6 @@ export default {
       });
     };
 
-    // Delete exercise
     const deleteExercise = (id) => {
       if (data.value.exercises.length > 1) {
         data.value.exercises = data.value.exercises.filter(
@@ -354,7 +342,6 @@ export default {
       }, 5000);
     };
 
-    // Update Workout
     const update = async () => {
       try {
         const { error } = await supabase
